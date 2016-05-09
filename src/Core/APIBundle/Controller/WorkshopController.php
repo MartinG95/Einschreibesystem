@@ -13,7 +13,6 @@ use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Request\ParamFetcher;
 use FOS\RestBundle\View\View;
 use FOS\RestBundle\Util\Codes;
-use JMS\Serializer\SerializationContext;
 use Core\EntityBundle\Entity\Workshop;
 use Core\EntityBundle\Entity\WorkshopParticipants;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
