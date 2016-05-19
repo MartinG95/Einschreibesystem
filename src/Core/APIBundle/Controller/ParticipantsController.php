@@ -153,8 +153,8 @@ class ParticipantsController extends FOSRestController implements ClassResourceI
     $participantsBlacklist = $this->getDoctrine()->getManager()->getRepository('CoreEntityBundle:Blacklist')->find($id); 
     if (!$participantsBlacklist) {
      throw $this->createNotFoundException("No User found");
-     } else {
-       $view = $this->view($participantsBlacklist, 200);
+     } else { 
+        $view = $this->view($participantsBlacklist, 200);
         return $this->handleView($view);
      }
     }
