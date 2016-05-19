@@ -49,9 +49,14 @@ class ParticipantsController extends FOSRestController implements ClassResourceI
      */
     public function getAllAction()
     {
-	    
+       $workshopParticipant = $this->getDoctrine()->getManager()->getRepository('CoreEntityBundle:Participants');
+        $entits = $workshopParticipant->getAllParticipants();
+        if (!$entits) {
+            throw $this->createNotFoundException("No Participants found");
+                      } 
+            $view = $this->view($entits, 200);
+        return $this->handleView($view)$view = $this->view($entits, 200);	    
     }
-    
     	/**
     	 * @Security("has_role('ROLE_ADMIN')")
      * @ApiDoc(
@@ -70,9 +75,14 @@ class ParticipantsController extends FOSRestController implements ClassResourceI
      */
     public function getBlacklistAllAction()
     {
-	    
+	    $participantsBlacklist = $this->getDoctrine()->getManager()->getRepository('CoreEntityBundle:Participants');
+	     $entits = $participantsBlacklist->getAllBlacklistedParticipants();
+	     if (!$entits) {
+            throw $this->createNotFoundException("No blacklisted Participant found");
+                           }
+        $view = $this->view($entits, 200);
+        return $this->handleView($view);
     }
-    
     	/**
     	 * @Security("has_role('ROLE_ADMIN')")
      * @ApiDoc(
@@ -133,6 +143,11 @@ class ParticipantsController extends FOSRestController implements ClassResourceI
      */
     public function getBlacklistAction($id)
     {
-	    
+    $participantsBlacklist = $this->getDoctrine()->getManager()->getRepository('CoreEntityBundle:Blacklist')->find($id); 
+    if (!$participantsBlacklist) {
+     throw $this->createNotFoundException("No User found");
+     } else {
+       $view = $this->view($participantsBlacklist, 200);
+        return $this->handleView($view);
+     }
     }
-}
